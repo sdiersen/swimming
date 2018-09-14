@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SwimInstructors{% endblock %}
+
+{% block body %}
+    <h1>SwimInstructors</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ swim_instructor.id }}</td>
+            </tr>
+            <tr>
+                <th>First_name</th>
+                <td>{{ swim_instructor.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Last_name</th>
+                <td>{{ swim_instructor.lastName }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('swim_instructors_index') }}">back to list</a>
+
+    <a href="{{ path('swim_instructors_edit', {'id': swim_instructor.id}) }}">edit</a>
+
+    {{ include('swim_instructors/_delete_form.html.twig') }}
+{% endblock %}

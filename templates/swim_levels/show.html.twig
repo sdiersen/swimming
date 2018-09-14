@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SwimLevels{% endblock %}
+
+{% block body %}
+    <h1>SwimLevels</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ swim_level.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ swim_level.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ swim_level.description }}</td>
+            </tr>
+            <tr>
+                <th>Requirements</th>
+                <td>{{ swim_level.requirements }}</td>
+            </tr>
+            <tr>
+                <th>AgeRange</th>
+                <td>{{ swim_level.ageRange }}</td>
+            </tr>
+            <tr>
+                <th>Progression</th>
+                <td>{{ swim_level.progression }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('swim_levels_index') }}">back to list</a>
+
+    <a href="{{ path('swim_levels_edit', {'id': swim_level.id}) }}">edit</a>
+
+    {{ include('swim_levels/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SwimLevels index{% endblock %}
+
+{% block body %}
+    <h1>SwimLevels index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Requirements</th>
+                <th>AgeRange</th>
+                <th>Progression</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for swim_level in swim_levels %}
+            <tr>
+                <td>{{ swim_level.id }}</td>
+                <td>{{ swim_level.title }}</td>
+                <td>{{ swim_level.description }}</td>
+                <td>{{ swim_level.requirements }}</td>
+                <td>{{ swim_level.ageRange }}</td>
+                <td>{{ swim_level.progression }}</td>
+                <td>
+                    <a href="{{ path('swim_levels_show', {'id': swim_level.id}) }}">show</a>
+                    <a href="{{ path('swim_levels_edit', {'id': swim_level.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('swim_levels_new') }}">Create new</a>
+{% endblock %}

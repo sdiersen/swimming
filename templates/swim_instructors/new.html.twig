@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New SwimInstructors{% endblock %}
+
+{% block body %}
+    <h1>Create new SwimInstructors</h1>
+
+    {{ include('swim_instructors/_form.html.twig') }}
+
+    <a href="{{ path('swim_instructors_index') }}">back to list</a>
+{% endblock %}

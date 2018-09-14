@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SwimInstructors index{% endblock %}
+
+{% block body %}
+    <h1>SwimInstructors index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First_name</th>
+                <th>Last_name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for swim_instructor in swim_instructors %}
+            <tr>
+                <td>{{ swim_instructor.id }}</td>
+                <td>{{ swim_instructor.firstName }}</td>
+                <td>{{ swim_instructor.lastName }}</td>
+                <td>
+                    <a href="{{ path('swim_instructors_show', {'id': swim_instructor.id}) }}">show</a>
+                    <a href="{{ path('swim_instructors_edit', {'id': swim_instructor.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('swim_instructors_new') }}">Create new</a>
+{% endblock %}
