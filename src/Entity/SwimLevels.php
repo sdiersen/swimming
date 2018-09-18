@@ -121,5 +121,4 @@ class SwimLevels
         return $this;
     }
 
-
 }

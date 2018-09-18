@@ -19,6 +19,25 @@ class SwimLevelsRepository extends ServiceEntityRepository
         parent::__construct($registry, SwimLevels::class);
     }
 
+    public function findAllOrderByProgression()
+    {
+        return $this->createQueryBuilder('sl')
+            ->orderBy('sl.progression', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function getLastProgression() {
+        //TODO - fix this query so that it returns the integer of the largest progression value
+        return $this->createQueryBuilder('sl')
+            ->select('sl.progression, MAX(sl.progression) AS progression' )
+            ->groupBy('sl.id')
+            ->orderBy('sl.progression', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+
+    }
+
 //    /**
 //     * @return SwimLevels[] Returns an array of SwimLevels objects
 //     */

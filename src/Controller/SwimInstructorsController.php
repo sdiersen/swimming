@@ -21,6 +21,8 @@ class SwimInstructorsController extends AbstractController
     public function index(SwimInstructorsRepository $swimInstructorsRepository): Response
     {
         return $this->render('swim_instructors/index.html.twig', ['swim_instructors' => $swimInstructorsRepository->findAll()]);
+       // return $this->rendersw('swim_instructors/index.html.twig', ['swim_instructors' => $swimInstructorsRepository->findAllOrderByProgression()]);
+
     }
 
     /**

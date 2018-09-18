@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New SwimLevels{% endblock %}
+{% block title %}New Swim Level{% endblock %}
 
 {% block body %}
-    <h1>Create new SwimLevels</h1>
+    <h1>Create Swim Level</h1>
 
     {{ include('swim_levels/_form.html.twig') }}
 
-    <a href="{{ path('swim_levels_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('swim_levels_index') }}" role="button">back to list</a>
 {% endblock %}

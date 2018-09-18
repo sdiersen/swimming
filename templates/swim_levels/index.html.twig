@@ -1,43 +1,77 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}SwimLevels index{% endblock %}
+{% block title %}Swim Levels{% endblock %}
 
 {% block body %}
-    <h1>SwimLevels index</h1>
-
+    <h1>Swim Levels {{ swim_levels|length }}</h1>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Title</th>
+                <th class="sl_table_a">Progression</th>
+                <th class="sl_table_a">Title</th>
                 <th>Description</th>
                 <th>Requirements</th>
-                <th>AgeRange</th>
-                <th>Progression</th>
-                <th>actions</th>
+                <th class="sl_table_a">AgeRange</th>
+                <th class="sl_table_a">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for swim_level in swim_levels %}
             <tr>
-                <td>{{ swim_level.id }}</td>
-                <td>{{ swim_level.title }}</td>
+                <td>
+                    {% if not loop.first %}
+                        <a class="btn btn-dark"
+                           href="{{ path('swim_levels_lower_progression', {'id': swim_level.id}) }}"
+                           role="button">
+                            <span style="font-size: 2em;color: #ff6600">
+                                <i class="fas fa-arrow-up"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <a class="btn btn-dark disabled"
+                           style="visibility: hidden;"
+                           href="#" role="button">
+                            <span style="font-size: 2em; color:#ff6600">
+                                <i class="fas fa-arrow-up"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                    {% if not loop.last %}
+                        <a class="btn btn-dark"
+                           href="{{ path('swim_levels_raise_progression', {'id': swim_level.id}) }}"
+                           role="button">
+                            <span style="font-size: 2em;color: #ff6600">
+                                <i class="fas fa-arrow-down"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <a class="btn btn-dark disabled"
+                           style="visibility: hidden;"
+                           href="#" role="button">
+                            <span style="font-size: 2em; color:#ff6600">
+                                <i class="fas fa-arrow-down"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </td>
+                <td class="sl_table_a">{{ swim_level.title }}</td>
                 <td>{{ swim_level.description }}</td>
                 <td>{{ swim_level.requirements }}</td>
-                <td>{{ swim_level.ageRange }}</td>
-                <td>{{ swim_level.progression }}</td>
-                <td>
-                    <a href="{{ path('swim_levels_show', {'id': swim_level.id}) }}">show</a>
-                    <a href="{{ path('swim_levels_edit', {'id': swim_level.id}) }}">edit</a>
+                <td class="sl_table_a">{{ swim_level.ageRange }}</td>
+                <td class="sl_table_a">
+                    <a class="btn btn-success" href="{{ path('swim_levels_edit', {'id': swim_level.id}) }}" role="button">edit</a>
+                    <a class="btn btn-danger" href="{{ path('swim_levels_delete', {'id': swim_level.id}) }}" role="button">delete</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <hr>
+    <div id="newSwimLevelDiv"></div>
+    <button style="display:block" class="btn btn-primary mx-auto w-25" id="swimLevelCreate" type="submit">Create New Swim Level</button>
 
-    <a href="{{ path('swim_levels_new') }}">Create new</a>
 {% endblock %}
